@@ -8,3 +8,7 @@ mysql
 mysql-connector
 requests
 pyspark-stubs
+statsmodels
+io
+requests
+sklearn

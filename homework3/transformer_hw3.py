@@ -34,7 +34,7 @@ class Transform(
         input_cols = self.getInputCols()
         output_col = self.getOutputCol()
 
-        print(input_cols, output_col)
+        # Window function to calculate rolling_avg
 
         window = (
             Window.partitionBy("batter").orderBy("days_diff").rangeBetween(-100, -1)
@@ -43,6 +43,8 @@ class Transform(
         df_rolling_avg = dataset.withColumn(
             "rolling_avg", func.sum("Hit").over(window) / func.sum("atBat").over(window)
         ).orderBy("batter", "batter_game_id")
+
+        # final dataframe with batter, game_id and rolling_avg
         df_rolling_avg = df_rolling_avg.select(
             "batter", col("batter_game_id").alias("game_id"), "rolling_avg"
         )
@@ -62,6 +64,7 @@ def main():
         .getOrCreate()
     )
 
+    # Fetching tables from mariadb database
     sql_game = "select local_date, game_id from baseball.game"
     sql_batter = "select batter, atBat, Hit, game_id from baseball.batter_counts"
 
@@ -93,9 +96,12 @@ def main():
         .load()
     )
 
+    # finding minimum date to calculate days difference
     temp = df.agg({"local_date": "min"}).collect()[0]
 
     df = df.withColumn("min_local_date", lit(temp["min(local_date)"]))
+
+    # adding days difference column to dataframe
     df = df.withColumn(
         "days_diff",
         (datediff(to_date(df["local_date"]), to_date(df["min_local_date"]))),
@@ -106,6 +112,8 @@ def main():
     )
 
     df_game = df.select("game_id", "days_diff")
+
+    # Joining batter and game dataframes
     df_batter_game = df_batter.join(
         df_game, df_game.game_id == df_batter.batter_game_id, "left"
     )
