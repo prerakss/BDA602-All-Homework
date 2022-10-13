@@ -2,3 +2,9 @@ numpy
 pandas
 plotly
 scikit-learn
+pyspark
+mariadb
+mysql
+mysql-connector
+requests
+pyspark-stubs
