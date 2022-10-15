@@ -10,5 +10,5 @@ requests
 pyspark-stubs
 statsmodels
 io
-requests
 sklearn
+matplotlib
