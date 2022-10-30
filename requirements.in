@@ -9,6 +9,7 @@ mysql-connector
 requests
 pyspark-stubs
 statsmodels
-io
 sklearn
 matplotlib
+seaborn
+typing

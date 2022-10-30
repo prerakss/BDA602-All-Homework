@@ -8,8 +8,9 @@ from plotly import express as px
 from plotly import figure_factory as ff
 from plotly import graph_objects as go
 from sklearn.datasets import load_breast_cancer
-from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
-from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+
+# from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix
 from sklearn.preprocessing import LabelEncoder
 
@@ -93,7 +94,7 @@ def mean_cont_diff(predictor, response):
     response_mean = (
         response.groupby(bin).apply(np.mean).reset_index(name="Mean-response")
     )
-    diff = np.square(response_mean.iloc[:, 1] - _mean)
+    # diff = np.square(response_mean.iloc[:, 1] - _mean)
     unweigh_diff = np.sum(np.square(response_mean.iloc[:, 1] - _mean)) / len(
         response_mean
     )
@@ -114,8 +115,8 @@ def random_forest(df, p, predictor, response):
 
 
 def logistic_regression(p, predictor, response):
-    logisticRegr = LogisticRegression(solver="lbfgs")
-    logisticreg = logisticRegr.fit(predictor, response)
+    # logisticRegr = LogisticRegression(solver="lbfgs")
+    # logisticreg = logisticRegr.fit(predictor, response)
     plt.plot(p, response, "-o")
 
     # Uncomment to see logistic Regression plots

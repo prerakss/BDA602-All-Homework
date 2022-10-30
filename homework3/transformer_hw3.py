@@ -31,8 +31,8 @@ class Transform(
         return self._set(**kwargs)
 
     def _transform(self, dataset):
-        input_cols = self.getInputCols()
-        output_col = self.getOutputCol()
+        # input_cols = self.getInputCols()
+        # output_col = self.getOutputCol()
 
         # Window function to calculate rolling_avg
 
