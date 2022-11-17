@@ -13,3 +13,4 @@ sklearn
 matplotlib
 seaborn
 typing
+sqlalchemy
