@@ -3,7 +3,7 @@ pandas
 plotly
 scikit-learn
 pyspark
-mariadb
+mariadb==1.0.11
 mysql
 mysql-connector
 requests
