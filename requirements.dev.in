@@ -5,3 +5,4 @@ isort[requirements]==5.10.1
 jupyterlab
 pip-tools
 pre-commit==2.20.0
+nose
