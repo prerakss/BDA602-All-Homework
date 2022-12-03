@@ -1,8 +1,22 @@
-#!/bin/sh
-if ! mariadb -h 3307 -u root -proot -e'use baseball';
+#!/usr/bin/env bash
+
+if ! mariadb -u root -h mariadb2  -proot -e'use baseball';
 then
-  mariadb -h 3307 -u root -proot -e'create database baseball';
+  echo "Baseball does not exist"
+  mariadb -u root -h mariadb2  -proot -e'create database if not exists baseball';
+  mariadb -u root -h mariadb2  -proot baseball < /baseball.sql
 fi
-  mariadb -h 3307 -u root -proot -e'use baseball';
-#DATABASE_TO_COPY_INTO=baseball
-#mariadb -u root -proot -e "CREATE DATABASE ${DATABASE_TO_COPY_INTO}"
+  echo "Database exists"
+  mariadb -u root -h mariadb2  -proot -e'use baseball';
+
+# had to add the line below while running it the first time; commented now
+#  mariadb -u root -h mariadb2  -proot baseball < /baseball.sql
+  mariadb -h mariadb2 -u root -proot baseball < /rolling_batting_avg.sql
+
+
+  mariadb -h mariadb2 -u root -proot baseball -e  '
+    select * from rolling_batting_avg where game_id = 12560;' > /stuff/batting_avg.csv
+  echo "Batting avg is exported into csv file"
+
+
+# changes made
