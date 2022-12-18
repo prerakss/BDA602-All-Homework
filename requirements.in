@@ -1,7 +1,6 @@
 numpy
 pandas
 plotly
-scikit-learn
 pyspark
 mariadb==1.0.11
 mysql
