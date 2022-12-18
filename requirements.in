@@ -8,8 +8,9 @@ mysql-connector
 requests
 pyspark-stubs
 statsmodels
-sklearn
 matplotlib
 seaborn
 typing
 sqlalchemy
+pymysql
+scikit-learn

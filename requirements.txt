@@ -4,7 +4,7 @@
 #
 #    pip-compile --output-file=requirements.txt requirements.in
 #
-certifi==2022.9.24
+certifi==2022.12.7
     # via requests
 charset-normalizer==2.1.1
     # via requests
@@ -18,6 +18,8 @@ greenlet==2.0.1
     # via sqlalchemy
 idna==3.4
     # via requests
+joblib==1.2.0
+    # via scikit-learn
 kiwisolver==1.4.4
     # via matplotlib
 mariadb==1.0.11
@@ -39,10 +41,11 @@ numpy==1.23.5
     #   matplotlib
     #   pandas
     #   patsy
+    #   scikit-learn
     #   scipy
     #   seaborn
     #   statsmodels
-packaging==21.3
+packaging==22.0
     # via
     #   matplotlib
     #   statsmodels
@@ -59,10 +62,10 @@ plotly==5.11.0
     # via -r requirements.in
 py4j==0.10.9
     # via pyspark
+pymysql==1.0.2
+    # via -r requirements.in
 pyparsing==3.0.9
-    # via
-    #   matplotlib
-    #   packaging
+    # via matplotlib
 pyspark==3.0.3
     # via
     #   -r requirements.in
@@ -77,22 +80,26 @@ pytz==2022.6
     # via pandas
 requests==2.28.1
     # via -r requirements.in
+scikit-learn==1.2.0
+    # via -r requirements.in
 scipy==1.9.3
-    # via statsmodels
+    # via
+    #   scikit-learn
+    #   statsmodels
 seaborn==0.12.1
     # via -r requirements.in
 six==1.16.0
     # via
     #   patsy
     #   python-dateutil
-sklearn==0.0.post1
-    # via -r requirements.in
-sqlalchemy==1.4.44
+sqlalchemy==2.0.0b1
     # via -r requirements.in
 statsmodels==0.13.5
     # via -r requirements.in
 tenacity==8.1.0
     # via plotly
+threadpoolctl==3.1.0
+    # via scikit-learn
 typing==3.7.4.3
     # via -r requirements.in
 urllib3==1.26.13

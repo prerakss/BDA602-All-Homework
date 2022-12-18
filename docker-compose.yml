@@ -6,17 +6,17 @@ services:
     depends_on:
       - mariadb2
     build:
-      context: ..
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: Dockerfile2
     volumes:
-      - ./stuff:/stuff
+      - ./output:/output
     networks:
       - backend
 
   mariadb2:
     image: lscr.io/linuxserver/mariadb:latest
     container_name: mariadb2
-    restart: unless-stopped
+    restart: "no"
     volumes:
       - ./db:/config
     networks:

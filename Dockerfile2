@@ -11,14 +11,16 @@ RUN apt-get update \
      python3-pymysql \
   && rm -rf /var/lib/apt/lists/*
 
-COPY ./requirements.txt .
-COPY ./baseball.sql .
-COPY script.sh .
-COPY rolling_batting_avg.sql .
 
-#RUN pip3 install --compile --no-cache-dir -r requirements.txt
+COPY ./script.sh /script.sh
+COPY ./predictors.sql /predictors.sql
+COPY ./baseball.sql /baseball.sql
+COPY ./Final/final.py /final.py
 
-RUN chmod +x script.sh
-CMD ["./script.sh"]
+COPY ./requirements.txt /requirements.txt
+RUN pip3 install --upgrade pip
+RUN pip3 install -r /requirements.txt
 
-# changes made
+RUN chmod +x /script.sh
+
+CMD ["/script.sh"]
